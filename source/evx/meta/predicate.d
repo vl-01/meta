@@ -1,4 +1,4 @@
-module meta.predicate;
+module evx.meta.predicate;
 
 private {//imports
 	import std.typetuple;

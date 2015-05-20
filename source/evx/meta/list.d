@@ -1,10 +1,10 @@
-module meta.list;
+module evx.meta.list;
 
 private {//imports
 	import std.typetuple;
 	import std.typecons;
 
-	import meta.predicate;
+	import evx.meta.predicate;
 }
 
 /* construct a list, which automatically flattens

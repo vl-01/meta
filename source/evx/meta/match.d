@@ -1,4 +1,4 @@
-module meta.match;
+module evx.meta.match;
 
 /* get the first item in a list of zero-parameter templates (patterns) which successfully compiles
 	if all patterns fail, the final pattern is forcibly instantiated
