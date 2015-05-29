@@ -142,9 +142,9 @@ enum is_range (R) = is (typeof(R.init.front.identity));
 
 /* test if a range belongs to a given range category 
 */
-alias is_input_range = std.range.isInputRange;
-alias is_output_range = std.range.isOutputRange;
-alias is_forward_range = std.range.isForwardRange;
-alias is_bidirectional_range = std.range.isBidirectionalRange;
-alias is_random_access_range = std.range.isRandomAccessRange;
-alias has_length = std.range.hasLength;
+alias is_input_range = std.range.primitives.isInputRange;
+alias is_output_range = std.range.primitives.isOutputRange;
+alias is_forward_range = std.range.primitives.isForwardRange;
+alias is_bidirectional_range = std.range.primitives.isBidirectionalRange;
+alias is_random_access_range = std.range.primitives.isRandomAccessRange;
+alias has_length = std.range.primitives.hasLength;
