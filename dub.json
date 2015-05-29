@@ -6,7 +6,6 @@
 	"license": "MIT",
 	"dependencies": {
 	},
-	"postBuildCommands": ["echo '<>>'"],
 	"targetType" : "executable",
 	"dflags": ["-main"]
 }
