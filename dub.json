@@ -3,6 +3,7 @@
 	"description": "compile-time list manipulation with type-level functions and metafunctions",
 	"copyright": "Copyright © 2015, Vlad Levenfeld",
 	"authors": ["Vlad Levenfeld"],
+	"license": "MIT",
 	"dependencies": {
 	},
 	"postBuildCommands": ["echo '<>>'"],
