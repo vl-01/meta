@@ -264,11 +264,28 @@ alias Deinterleave (T...) = DeinterleaveNLists!(2,T);
 
 /* map each item in a list to the given member in each item
 */
-template Extract (string member, T...)
+template Lens (string member, T...)
 {
 			static if (T.length == 0)
-				alias Extract = Cons!();
+				alias Lens = Cons!();
 			else mixin(q{
-				alias Extract = Cons!(T[0].} ~member~ q{, Extract!(member, T[1..$]));
+				alias Lens = Cons!(T[0].} ~member~ q{, Lens!(member, T[1..$]));
 			});
 		}
+
+/* get all items in a list of zero-parameter templates which successfully compiles
+*/
+template MatchAll (patterns...)
+{
+	template compiles (alias pattern)
+	{
+		void attempt ()()
+		{
+			alias attempt = Instantiate!pattern;
+		}
+
+		enum compiles = is (typeof(attempt));
+	}
+
+	alias MatchAll = Filter!(compiles, patterns);
+}

@@ -21,11 +21,7 @@ auto ref identity (T)(auto ref T x)
 */
 template ExprType (alias symbol)
 {
-	 alias Identity  () = typeof(symbol.identity);
-	 alias Resolved  () = typeof(symbol ());
-	 alias Forwarded () = typeof(symbol);
-
-	 alias ExprType = Match!(Identity, Resolved, Forwarded);
+	 alias ExprType = typeof(symbol.identity);
 }
 
 /* remove qualifiers from a type
@@ -103,4 +99,12 @@ unittest {
 	static assert (is (C1!T == int[]));
 	static assert (is (C2!T == const(int)));
 	static assert (is (C3!T == int[]));
+}
+
+/* mixin a zero-parameter template
+	(useful for mixing in templates from a list)
+*/
+template Mixin (alias mix)
+{
+	mixin mix;
 }
