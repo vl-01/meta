@@ -22,7 +22,7 @@ alias Identity (T...) = T[0];
 
 /* identity function
 */
-auto ref identity (T)(auto ref T x)
+auto ref identity (T)(T x)
 {
 	return x;
 }
