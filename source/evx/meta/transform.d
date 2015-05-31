@@ -12,6 +12,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 private
 {//imports
 	import std.traits;
+	import std.typecons;
 	import evx.meta.match;
 }
 
@@ -36,6 +37,10 @@ template ExprType (alias symbol)
 /* remove qualifiers from a type
 */
 alias Unqual = std.traits.Unqual;
+
+/* select one of two valid expressions based on a boolean expression
+*/
+alias Select = std.typecons.Select;
 
 /* extract the underlying type of a unary template type
 */

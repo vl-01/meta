@@ -40,11 +40,11 @@ alias Reverse = std.typetuple.Reverse;
 template Map (alias F, T...)
 {
 	static if (T.length == 0)
-	{/*...}*/
+	{
 		alias Map = Cons!();
 	}
 	else
-	{/*...}*/
+	{
 		alias Map = Cons!(F!(Unpack!(T[0])), Map!(F, T[1..$]));
 	}
 }
@@ -93,7 +93,7 @@ unittest {
 template All (alias cond, T...)
 {
 	static if (T.length == 0)
-	{/*...}*/
+	{
 		enum All = true;
 	}
 	else
@@ -110,7 +110,7 @@ template Any (alias cond, T...)
 		enum Any = false;
 	}
 	else
-	{/*...}*/
+	{
 		enum Any = cond!(Unpack!(T[0])) || Any!(cond, T[1..$]);
 	}
 }
@@ -275,12 +275,12 @@ alias Deinterleave (T...) = DeinterleaveNLists!(2,T);
 */
 template Lens (string member, T...)
 {
-			static if (T.length == 0)
-				alias Lens = Cons!();
-			else mixin(q{
-				alias Lens = Cons!(T[0].} ~member~ q{, Lens!(member, T[1..$]));
-			});
-		}
+	static if (T.length == 0)
+		alias Lens = Cons!();
+	else mixin(q{
+		alias Lens = Cons!(T[0].} ~member~ q{, Lens!(member, T[1..$]));
+	});
+}
 
 /* get all items in a list of zero-parameter templates which successfully compiles
 */
