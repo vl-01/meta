@@ -290,7 +290,7 @@ template MatchAll (patterns...)
 	{
 		void attempt ()()
 		{
-			alias attempt = Instantiate!pattern;
+			alias attempt = pattern!();
 		}
 
 		enum compiles = is (typeof(attempt));
