@@ -6,6 +6,5 @@
 	"license": "MIT",
 	"dependencies": {
 	},
-	"targetType" : "executable",
-	"dflags": ["-main"]
+	"targetType" : "executable"
 }
