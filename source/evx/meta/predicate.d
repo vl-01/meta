@@ -56,7 +56,7 @@ template not (alias predicate)
 	}
 
 	bool not (Args...)()
-	if (is(typeof(predicate == true)))
+	if (is(typeof(predicate == true)) && !(is(typeof(predicate(Args.init)))))
 	{
 		return !predicate;
 	}
