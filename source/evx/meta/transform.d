@@ -1,39 +1,62 @@
 module evx.meta.transform;
 
-private
-{//imports
+private {//imports
 	import std.traits;
 	import std.typecons;
 	import evx.meta.match;
 }
 
-/* identity template
+/**
+	 identity template
 */
 alias Identity (T...) = T[0]; 
+///
+unittest {
+    static assert (is (Identity!int == int));
+}
 
-/* identity function
+/**
+	 identity function
 */
 auto ref identity (T)(T x)
 {
 	return x;
 }
+///
+unittest {
+    assert (1.identity == 1);
+}
 
-/* get the type of a single-symbol expression
+/**
+	 get the type of a single-symbol expression
 */
 template ExprType (alias symbol)
 {
 	 alias ExprType = typeof(symbol.identity);
 }
+///
+unittest {
+    auto a (){return 1;}
+    auto b = 1;
 
-/* remove qualifiers from a type
+    static assert (!(is (typeof(a) == typeof(b))));
+    static assert (is (typeof(a()) == typeof(b)));
+    static assert (is (typeof(a()) == ExprType!a));
+    static assert (is (ExprType!a == ExprType!b));
+}
+
+/**
+	 remove qualifiers from a type
 */
 alias Unqual = std.traits.Unqual;
 
-/* select one of two valid expressions based on a boolean expression
+/**
+	 select one of two valid expressions based on a boolean expression
 */
 alias Select = std.typecons.Select;
 
-/* extract the underlying type of a unary template type
+/**
+	 extract the underlying type of a unary template type
 */
 template Unwrapped (T)
 {
@@ -41,6 +64,7 @@ template Unwrapped (T)
 		alias Unwrapped = U;
 	else alias Unwrapped = T;
 }
+///
 unittest {
 	static struct T {}
 	static struct U (T) {}
@@ -54,7 +78,8 @@ unittest {
 	static assert (is (Unwrapped!(Unwrapped!W) == T));
 }
 
-/* extract the deepest underlying type of a nested series of unary templates
+/**
+	 extract the deepest underlying type of a nested series of unary templates
 */
 template InitialType (T)
 {
@@ -62,6 +87,7 @@ template InitialType (T)
 		alias InitialType = InitialType!U;
 	else alias InitialType = T;
 }
+///
 unittest {
 	static struct T {}
 	static struct U (T) {}
@@ -74,7 +100,8 @@ unittest {
 	static assert (is (InitialType!W == T));
 }
 
-/* compose a list of templates into a single template
+/**
+	 compose a list of templates into a single template
 */
 template Compose (Templates...)
 {
@@ -87,6 +114,7 @@ template Compose (Templates...)
 	}
 	else alias Compose = Templates[0];
 }
+///
 unittest {
 	import std.range: ElementType;
 
@@ -106,7 +134,8 @@ unittest {
 	static assert (is (C3!T == int[]));
 }
 
-/* mixin a zero-parameter template
+/**
+	 mixin a zero-parameter template
 	(useful for mixing in templates from a list)
 */
 template Mixin (alias mix)
